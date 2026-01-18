@@ -1,0 +1,124 @@
+.footer{
+    background-color: #cdd8d877;
+    width: calc(100% - 20px);
+    padding: 10px 10px 5px 10px;
+    bottom: 0;
+    margin-top: 50px;
+}
+
+.footer .footerSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+}
+
+.footerSection .footerSecA{
+    width: calc(66%/3 - 20px);
+    margin: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    /* text-align: center; */
+}
+
+.footerSection .footerSecA a{
+    color: rgb(79, 78, 78);
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.footerSection .footerSecB{
+    width: calc(33% - 20px);
+    margin: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footerSection .footerSecB a{
+    color: rgb(80, 79, 79);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footerSection p{
+    padding: 0;
+    margin: 0;
+}
+
+
+.footer .copyright{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    color: rgb(82, 80, 80);
+}
+
+.footer .copyright p{
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .copyright a{
+    font-style: normal;
+    color: rgb(82, 80, 80);
+    text-decoration: none;
+    transition: 1s ease-in-out;
+}
+
+.footer .copyright a:hover{
+    transform: scale(1.1);
+}
+
+
+.SocialFooter{
+    display: flex;
+    justify-content: center;
+}
+
+.SocialFooter a{
+    font-size: 24px;
+    margin: 3px 25px 10px 25px;
+    color: rgba(0, 0, 0, 0.577);
+    transition: 500ms ease-in-out;
+}
+
+.SocialFooter a:hover{
+    transform: scale(1.2);
+    color: rgba(0, 0, 0, 0.777);
+}
+
+.footerCopyright{
+    padding: 0px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgb(132, 131, 131);
+}
+
+@media (max-width:760px) {
+
+    .footer .footerSection{
+        width: 90%;
+    }
+
+    .footerSection .footerSecA{
+        text-align: center;
+        width: calc(99%/2 - 20px);
+    }
+
+    .footerSection .footerSecB{
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width:400px) {
+    .footerCopyright{
+        justify-content: center;
+    }
+}

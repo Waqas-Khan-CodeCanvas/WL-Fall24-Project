@@ -1,0 +1,43 @@
+{
+  "name": "book-saler",
+  "version": "1.0.0",
+  "description": "we are here to solve your problems.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "npx nodemon server.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshrastogi15/Book-saler.git"
+  },
+  "author": "harsh rastogi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshrastogi15/Book-saler/issues"
+  },
+  "homepage": "https://github.com/harshrastogi15/Book-saler#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express-validator": "^6.14.0",
+    "express.js": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "node-cache": "^5.1.2",
+    "nodemailer": "^6.7.7",
+    "nodemon": "^2.0.15",
+    "redux-thunk": "^2.4.1"
+  },
+  "engines": {
+    "node": "22.x",
+    "npm": "9.5.1"
+  }
+}
