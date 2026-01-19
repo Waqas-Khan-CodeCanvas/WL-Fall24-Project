@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Footer from "./components/Footer";
+import AllBooks from "./pages/AllBooks";
+import ViewBookDetails from "./pages/ViewBookDetails";
+import { authActions } from "./store/auth";
+import { useDispatch, useSelector } from "react-redux";
+import Cart from "./pages/Cart";
+import Profile from "./pages/Profile";
+import Favourite from "./pages/Favourite";
+import OrderHistory from "./pages/OrderHistory";
+import Settings from "./pages/Settings";
+import AllOrders from "./components/AdminPages/AllOrders";
+import AddBook from "./components/AdminPages/AddBook";
+import UpdateBooks from "./components/AdminPages/UpdateBooks";
+import { Toaster } from "react-hot-toast";
+const App = () => {
+  const dispatch = useDispatch();
+  const role = useSelector((state) => state.auth.role);
+  useEffect(() => {
+    if (
+      localStorage.getItem("id") &&
+      localStorage.getItem("token") &&
+      localStorage.getItem("role")
+    ) {
+      dispatch(authActions.login());
+      dispatch(authActions.changeRole(localStorage.getItem("role")));
+    }
+  }, []);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="">
+      <Toaster position="top-right"/>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/all-books" element={<AllBooks />} />
+        <Route path="/view-book-details/:id" element={<ViewBookDetails />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Profile />}>
+          {role !== "admin" ? (
+            <Route index element={<Favourite />} />
+          ) : (
+            <Route index element={<AllOrders />} />
+          )}
+          {role === "admin" && (
+            <Route path="/profile/add-book" element={<AddBook />} />
+          )}
+          <Route path="/profile/OrderHistory" element={<OrderHistory />} />
+          <Route path="/profile/settings" element={<Settings />} />
+        </Route>
+        {role === "admin" && (
+          <Route path="/update-book/:id" element={<UpdateBooks />} />
+        )}
+      </Routes>
+      <Footer />
+    </div>
+  );
+};
 
-export default App
+export default App;
