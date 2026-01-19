@@ -1,18 +1,28 @@
 const express = require("express");
-const connectDB = require("./config/db_connection");
-const errorMiddleware = require("./middlewares/error.middleware");
-
 const app = express();
+const cors = require("cors");
+const user = require("./routes/user");
+const book = require("./routes/book");
+const cart = require("./routes/cart");
+const fav = require("./routes/favourite");
+const order = require("./routes/order");
+require("dotenv").config();
+
+const PORT = process.env.PORT || 1000;
+app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", require("./routes/auth.routes"));
-app.use("/api/books", require("./routes/book.routes"));
-app.use("/api/orders", require("./routes/order.routes"));
-app.use("/api/users", require("./routes/user.routes"));
+//Connection
+require("./conn/conn");
 
-app.use(errorMiddleware);
+//Calling Routes
+app.use("/api/v1", user);
+app.use("/api/v1", book);
+app.use("/api/v1", cart);
+app.use("/api/v1", fav);
+app.use("/api/v1", order);
 
-const PORT = process.env.PORT || 5000;
-connectDB().then(() =>
-  app.listen(PORT, () => console.log(`Server running on ${PORT}`))
-);
+//SERVER
+app.listen(PORT, () => {
+  console.log(`Server Started at PORT : ${PORT} `);
+});
